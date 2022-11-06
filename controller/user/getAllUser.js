@@ -1,22 +1,22 @@
-const User = require("../../model/user");
+const JobInfo = require("../../model/jobInfo");
 
-const getAllUser = async (req, res) => {
+const getAllJobInfo = async (req, res) => {
   try {
     console.log("get all user");
-    const users = await User.find().select("-password");
-    console.log(users, "user");
-    if (!users) {
+    const jobInfo = await User.find();
+    // console.log("user");
+    if (!jobInfo) {
       return res.status(401).json({
         status: "fail",
-        error: "No user found.",
+        error: "No jobInfo found.",
       });
     }
 
     res.status(200).json({
       status: "success",
-      message: "Successfully logged in",
+      message: "Successfully get jobinfo datas",
       data: {
-        users,
+        jobInfo,
       },
     });
   } catch (error) {
@@ -27,4 +27,4 @@ const getAllUser = async (req, res) => {
   }
 };
 
-module.exports = getAllUser;
+module.exports = getAllJobInfo;
